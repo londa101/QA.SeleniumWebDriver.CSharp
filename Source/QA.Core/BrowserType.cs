@@ -6,22 +6,22 @@
     public enum BrowserType
     {
         /// <summary>
-        /// The Chrome browser.
+        /// An element for Chrome.
         /// </summary>
         Chrome,
 
         /// <summary>
-        /// The Internet Explorer.
+        /// An element for Internet Explorer.
         /// </summary>
         InternetExporer,
 
         /// <summary>
-        /// The Firefox browser.
+        /// An element for Firefox.
         /// </summary>
         Firefox,
 
         /// <summary>
-        /// The Safari Browser.
+        /// An element fot Safari.
         /// </summary>
         Safari
     }

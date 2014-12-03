@@ -9,8 +9,8 @@
     [TestClass]
     public class Tests : BaseWebDriverTest
     {
+        private readonly AccountFactory accountFactory = new AccountFactory();
         private FacebookMainPage page;
-        private AccountFactory accountFactory = new AccountFactory();
 
         [TestInitialize]
         public void SetupTest()

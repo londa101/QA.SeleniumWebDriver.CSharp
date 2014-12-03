@@ -12,7 +12,7 @@
     {
         private const string ThePageUrlCannotBeEmpty = "The URL of the page cannot be empty.";
         private const string TheTitleCannotBeEmpty = "The title of the page cannot be empty.";
-        private const string BaseUrl = "http://www.facebook.com";
+        private const string TheDriverCannotBeNull = "The driver cannot be null.";
 
         private IWebDriver driver;
         private string url;
@@ -20,15 +20,27 @@
 
         protected BasePage(IWebDriver driver, string url, string title)
         {
-            this.driver = driver;
+            this.Driver = driver;
             this.Url = url;
             this.Title = title;
         }
 
         public IWebDriver Driver
         {
-            get { return this.driver; }
-            set { this.driver = value; }
+            get
+            {
+                return this.driver;
+            }
+
+            private set
+            {
+                if (value == null)
+                {
+                    throw new ArgumentNullException(TheDriverCannotBeNull);
+                }
+
+                this.driver = value;
+            }
         }
         
         /// <summary>

@@ -2,6 +2,7 @@ namespace QA.Core.Exceptions
 {
     using System;
     using System.Text;
+
     using OpenQA.Selenium;
 
     public class StillCheckedException : ApplicationException

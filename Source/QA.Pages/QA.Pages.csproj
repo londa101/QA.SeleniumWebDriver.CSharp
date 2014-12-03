@@ -50,6 +50,7 @@
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="FacebookMain\FacebookMainPage.cs" />
+    <Compile Include="FacebookMain\FacebookMainValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
