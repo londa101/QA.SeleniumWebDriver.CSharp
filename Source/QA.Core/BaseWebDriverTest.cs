@@ -12,17 +12,12 @@ namespace QA.Core
 {
     public class BaseWebDriverTest
     {
-        private IWebDriverService _webDriverService;
-        private IWebDriverFactory _webDriverFactory;
+        private readonly IWebDriverService webDriverService;
 
-        public void TestInit(BrowserType browserType, int timeOut)
+        public BaseWebDriverTest()
         {
-            this._webDriverFactory = new WebWebDriverFactory();
-            this._webDriverService = new WebDriverService(_webDriverFactory);
-            this.Browser = _webDriverService.GetBrowser(browserType);
-            this.Wait = new WebDriverWait(this.Browser, TimeSpan.FromSeconds(timeOut));
-            this.TimeOut = timeOut;
-            this.Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+            IWebDriverFactory webDriverFactory = new WebDriverFactory();
+            this.webDriverService = new WebDriverService(webDriverFactory);
         }
 
         protected log4net.ILog Log { get; set; }
@@ -38,6 +33,26 @@ namespace QA.Core
         public IWebElement CurrentElement { get; set; }
 
         public int TimeOut { get; set; }
+
+        public void OpenBrowser(BrowserType browserType, int timeOut)
+        {
+            this.Browser = webDriverService.GetBrowser(browserType);
+            this.Wait = new WebDriverWait(this.Browser, TimeSpan.FromSeconds(timeOut));
+            this.TimeOut = timeOut;
+            this.Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        }
+
+        protected void CloseBrowser()
+        {
+            try
+            {
+                this.Browser.Quit();
+            }
+            catch (Exception ex)
+            {
+                this.Log.Error(ex.Message);
+            }
+        }
 
         public IWebElement GetElement(By by)
         {
@@ -114,7 +129,7 @@ namespace QA.Core
 
         public void WaitForTextPresent(string textToFind, bool shouldWait = true)
         {
-            for (int second = 0;; second++)
+            for (int second = 0; ; second++)
             {
                 if (second >= this.TimeOut)
                 {
@@ -155,4 +170,3 @@ namespace QA.Core
         }
     }
 }
-

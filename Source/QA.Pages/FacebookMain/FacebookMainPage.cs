@@ -6,26 +6,24 @@ namespace QA.Pages.FacebookMain
 {
     public class FacebookMainPage : BasePage
     {
-        private const string url = @"https://www.facebook.com/";
-        private const string title = @"Welcome to Facebook - Log In, Sign Up or Learn More";
+        private const string PageUrl = @"https://www.facebook.com/";
+        private const string PageTitle = @"Welcome to Facebook - Log In, Sign Up or Learn More";
 
         public FacebookMainPage(IWebDriver driver)
-            : base(driver, url, title)
+            : base(driver, PageUrl, PageTitle)
         {
             this.Elements = new FacebookMainElements();
-            PageFactory.InitElements(this.driver, this.Elements);
+            PageFactory.InitElements(this.Driver, this.Elements);
         }
 
         public FacebookMainElements Elements { get; set; }
 
         public void LoginUser()
         {
-           
             this.Elements.InputTextLoginEmail.SendKeys("Jane");
             this.Elements.InputPasswordLoginPasword.SendKeys("Doe");
 
             this.Elements.InputSubmitLoginPasword.Click();
-          
         }
     }
 }

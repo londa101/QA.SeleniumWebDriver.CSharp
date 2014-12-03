@@ -1,6 +1,6 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using QA.Core.Contracts;
+using System;
 
 namespace QA.Core
 {
@@ -10,13 +10,13 @@ namespace QA.Core
         private const string TheTitleCannotBeEmpty = "The title of the page cannot be empty.";
         private const string BaseUrl = "http://www.facebook.com";
 
-        protected readonly IWebDriver driver;
+        protected readonly IWebDriver Driver;
         private string url;
         private string title;
 
         protected BasePage(IWebDriver driver, string url, string title)
         {
-            this.driver = driver;
+            this.Driver = driver;
             this.Url = url;
             this.Title = title;
         }
@@ -28,7 +28,7 @@ namespace QA.Core
                 return this.url;
             }
 
-            set
+            private set
             {
                 if (string.IsNullOrEmpty(value))
                 {
@@ -47,7 +47,7 @@ namespace QA.Core
                 return this.title;
             }
 
-            set
+            private set
             {
                 if (string.IsNullOrEmpty(value))
                 {
@@ -60,7 +60,7 @@ namespace QA.Core
 
         public void NavigateTo()
         {
-            this.driver.Navigate().GoToUrl(this.Url);
+            this.Driver.Navigate().GoToUrl(this.Url);
         }
     }
 }

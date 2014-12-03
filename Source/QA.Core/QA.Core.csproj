@@ -62,7 +62,7 @@
     <Compile Include="BaseWebDriverTest.cs" />
     <Compile Include="Contracts\IWebDriverService.cs" />
     <Compile Include="WebDriverService.cs" />
-    <Compile Include="WebWebDriverFactory.cs" />
+    <Compile Include="WebDriverFactory.cs" />
     <Compile Include="Exceptions\ElementStillVisibleException.cs" />
     <Compile Include="Exceptions\NoSuchElementException.cs" />
     <Compile Include="Exceptions\NotCheckedException.cs" />
@@ -76,6 +76,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="chromedriver.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Export_Selenium\MsTestExport.js" />
   </ItemGroup>
   <ItemGroup>

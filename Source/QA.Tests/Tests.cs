@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using QA.Core;
 using QA.Pages.FacebookMain;
 
@@ -10,42 +7,35 @@ namespace QA.Tests
     [TestClass]
     public class Tests : BaseWebDriverTest
     {
+        private FacebookMainPage page;
+
         [TestInitialize]
         public void SetupTest()
         {
-            this.TestInit(BrowserType.Firefox, 10);
+            this.OpenBrowser(BrowserType.Chrome, 10);
+            this.page = new FacebookMainPage(this.Browser);
         }
 
         [TestCleanup]
         public void TeardownTest()
         {
-            try
-            {
-                this.Browser.Quit();
-            }
-            catch (Exception ex)
-            {
-                this.Log.Error(ex.Message);
-            }
+            this.CloseBrowser();
         }
 
         [TestMethod]
         [Priority(5)]
         public void VerifyTitle()
         {
-            var page = new FacebookMainPage(this.Browser);
             page.NavigateTo();
-            this.Browser.Manage().Cookies.DeleteAllCookies();
-            this.Browser.Manage().Window.Maximize();
-            Assert.AreEqual("Welcome to Facebook - Log In, Sign Up or Learn More", this.Browser.Title);
+       
+            Assert.AreEqual(page.Title, this.Browser.Title);
         }
 
         [TestMethod]
         [Priority(5)]
-        public void VerifyUrl()
+        public  void VerifyUrl()
         {
-            var page = new FacebookMainPage(this.Browser);
-            page.NavigateTo();
+            this.page.NavigateTo();
 
             Assert.AreEqual(page.Url, this.Browser.Url);
         }
@@ -54,10 +44,8 @@ namespace QA.Tests
         [Priority(3)]
         public void LoginValidUser()
         {
-            var page = new FacebookMainPage(this.Browser);
-            page.NavigateTo();
-            page.LoginUser();
-
+            this.page.NavigateTo();
+            this.page.LoginUser();
         }
     }
 }

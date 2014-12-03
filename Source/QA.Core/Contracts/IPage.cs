@@ -4,6 +4,8 @@
     {
         void NavigateTo();
 
-       // void FillInField(IWebElement element, string text);
+        string Title { get; }
+
+        string Url { get; }
     }
 }
