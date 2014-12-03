@@ -64,9 +64,12 @@
             }
         }
 
+        // TODO: Needs review.
+        /*
         protected IWebElement GetElement(By by)
         {
             IWebElement result = null;
+
             try
             {
                 result = this.Wait.Until(x => x.FindElement(by));
@@ -180,5 +183,6 @@
         {
             this.WaitForTextPresent(textToFind, false);
         }
+         */
     }
 }

@@ -6,7 +6,7 @@
     {
         public void ValidateTitle(string expected, string actual)
         {
-            Assert.AreEqual(expected,actual);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
