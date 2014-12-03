@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA.Tests", "QA.Tests\QA.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA.Core", "QA.Core\QA.Core.csproj", "{2EE232BA-362C-4818-9CD3-34E56969FA46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA.Data", "QA.Data\QA.Data.csproj", "{ECFF0E87-E92D-4AE9-9E98-0C1EA7B92DA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2EE232BA-362C-4818-9CD3-34E56969FA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EE232BA-362C-4818-9CD3-34E56969FA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EE232BA-362C-4818-9CD3-34E56969FA46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECFF0E87-E92D-4AE9-9E98-0C1EA7B92DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECFF0E87-E92D-4AE9-9E98-0C1EA7B92DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECFF0E87-E92D-4AE9-9E98-0C1EA7B92DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECFF0E87-E92D-4AE9-9E98-0C1EA7B92DA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,6 +1,7 @@
 ﻿namespace QA.Pages.FacebookMain
 {
     using Core;
+    using Data.Models;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Support.PageObjects;
 
@@ -18,10 +19,13 @@
 
         public FacebookMainElements Elements { get; set; }
 
-        public void LoginUser()
+        public void LoginUser(Account account)
         {
-            this.Elements.InputTextLoginEmail.SendKeys("Jane");
-            this.Elements.InputPasswordLoginPassword.SendKeys("Doe");
+            this.Elements.InputTextLoginEmail.Clear();
+            this.Elements.InputTextLoginEmail.SendKeys(account.Email);
+
+            this.Elements.InputPasswordLoginPassword.Clear();
+            this.Elements.InputPasswordLoginPassword.SendKeys(account.Password);
 
             this.Elements.InputSubmitLoginPassword.Click();
         }

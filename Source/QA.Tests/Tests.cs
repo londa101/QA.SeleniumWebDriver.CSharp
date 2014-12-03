@@ -1,6 +1,8 @@
 ﻿namespace QA.Tests
 {
     using Core;
+    using Data.Factories;
+    using Data.Models;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Pages.FacebookMain;
 
@@ -8,6 +10,7 @@
     public class Tests : BaseWebDriverTest
     {
         private FacebookMainPage page;
+        private AccountFactory accountFactory = new AccountFactory();
 
         [TestInitialize]
         public void SetupTest()
@@ -42,10 +45,11 @@
 
         [TestMethod]
         [Priority(3)]
-        public void LoginValidUser()
+        public void LoginInvalidUser()
         {
             this.page.NavigateTo();
-            this.page.LoginUser();
+            Account account = this.accountFactory.GetInvalidAccount();
+            this.page.LoginUser(account);
         }
     }
 }
