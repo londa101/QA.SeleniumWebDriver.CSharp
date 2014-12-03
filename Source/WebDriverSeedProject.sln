@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA.Core", "TelerikAcademy_WebDriver\QA.Core.csproj", "{2EE232BA-362C-4818-9CD3-34E56969FA46}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA.Tests", "Facebook.Tests\QA.Tests.csproj", "{E227EEB7-92D3-42BA-94F0-0797DC3F78D9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA.Pages", "QA.Pages\QA.Pages.csproj", "{436A7970-F725-4ADC-ACA0-7F87C134EF23}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA.Tests", "QA.Tests\QA.Tests.csproj", "{E227EEB7-92D3-42BA-94F0-0797DC3F78D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QA.Core", "QA.Core\QA.Core.csproj", "{2EE232BA-362C-4818-9CD3-34E56969FA46}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,18 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2EE232BA-362C-4818-9CD3-34E56969FA46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EE232BA-362C-4818-9CD3-34E56969FA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EE232BA-362C-4818-9CD3-34E56969FA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EE232BA-362C-4818-9CD3-34E56969FA46}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E227EEB7-92D3-42BA-94F0-0797DC3F78D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E227EEB7-92D3-42BA-94F0-0797DC3F78D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E227EEB7-92D3-42BA-94F0-0797DC3F78D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E227EEB7-92D3-42BA-94F0-0797DC3F78D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{436A7970-F725-4ADC-ACA0-7F87C134EF23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{436A7970-F725-4ADC-ACA0-7F87C134EF23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{436A7970-F725-4ADC-ACA0-7F87C134EF23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{436A7970-F725-4ADC-ACA0-7F87C134EF23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E227EEB7-92D3-42BA-94F0-0797DC3F78D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E227EEB7-92D3-42BA-94F0-0797DC3F78D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E227EEB7-92D3-42BA-94F0-0797DC3F78D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E227EEB7-92D3-42BA-94F0-0797DC3F78D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EE232BA-362C-4818-9CD3-34E56969FA46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EE232BA-362C-4818-9CD3-34E56969FA46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EE232BA-362C-4818-9CD3-34E56969FA46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EE232BA-362C-4818-9CD3-34E56969FA46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
