@@ -1,4 +1,4 @@
 Selenium WebDriver - C#
 =======================
 
-Seed project written in C#/Selenium Driver/ for Software Quality Assurance.
+A seed project written in C# for a Software Quality Assurance of Web Applications using the Selenium WebDriver.
