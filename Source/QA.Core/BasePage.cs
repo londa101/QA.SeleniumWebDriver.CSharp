@@ -6,8 +6,9 @@ namespace QA.Core
 {
     public abstract class BasePage : IPage
     {
-        private const string ThePageUrlCannotBeEmpty = "The page url cannot be empty.";
-        private const string TheTitleCannotBeEmpty = "The title cannot be empty.";
+        private const string ThePageUrlCannotBeEmpty = "The URL of the page cannot be empty.";
+        private const string TheTitleCannotBeEmpty = "The title of the page cannot be empty.";
+        private const string BaseUrl = "http://www.facebook.com";
 
         protected readonly IWebDriver driver;
         private string url;
@@ -19,7 +20,7 @@ namespace QA.Core
             this.Url = url;
             this.Title = title;
         }
-        
+
         public string Url
         {
             get
@@ -44,7 +45,6 @@ namespace QA.Core
             get
             {
                 return this.title;
-                
             }
 
             set
@@ -62,7 +62,5 @@ namespace QA.Core
         {
             this.driver.Navigate().GoToUrl(this.Url);
         }
-
-       
     }
 }

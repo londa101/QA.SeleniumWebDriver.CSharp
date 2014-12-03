@@ -1,25 +1,31 @@
-﻿using System;
-using System.Text;
-using System.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using QA.Core.Contracts;
 using QA.Core.Exceptions;
+using System;
+using System.Text;
+using System.Threading;
 using NoSuchElementException = QA.Core.Exceptions.NoSuchElementException;
 
 namespace QA.Core
 {
     public class BaseWebDriverTest
     {
-        protected readonly log4net.ILog Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private IWebDriverService _webDriverService;
+        private IWebDriverFactory _webDriverFactory;
 
-        public void TestInit(IWebDriver driver, string baseUrl, int timeOut)
+        public void TestInit(BrowserType browserType, int timeOut)
         {
-            this.Browser = driver;
-            this.BaseUrl = baseUrl;
-            this.Wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOut));
+            this._webDriverFactory = new WebWebDriverFactory();
+            this._webDriverService = new WebDriverService(_webDriverFactory);
+            this.Browser = _webDriverService.GetBrowser(browserType);
+            this.Wait = new WebDriverWait(this.Browser, TimeSpan.FromSeconds(timeOut));
             this.TimeOut = timeOut;
+            this.Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         }
+
+        protected log4net.ILog Log { get; set; }
 
         public IWebDriver Browser { get; set; }
 

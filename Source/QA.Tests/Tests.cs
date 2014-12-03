@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using QA.Core;
 using QA.Pages.FacebookMain;
@@ -12,7 +13,7 @@ namespace QA.Tests
         [TestInitialize]
         public void SetupTest()
         {
-            this.TestInit(new FirefoxDriver(), @"http://www.telerik.com/", 10);
+            this.TestInit(BrowserType.Firefox, 10);
         }
 
         [TestCleanup]
@@ -34,7 +35,8 @@ namespace QA.Tests
         {
             var page = new FacebookMainPage(this.Browser);
             page.NavigateTo();
-
+            this.Browser.Manage().Cookies.DeleteAllCookies();
+            this.Browser.Manage().Window.Maximize();
             Assert.AreEqual("Welcome to Facebook - Log In, Sign Up or Learn More", this.Browser.Title);
         }
 
@@ -55,7 +57,7 @@ namespace QA.Tests
             var page = new FacebookMainPage(this.Browser);
             page.NavigateTo();
             page.LoginUser();
-            
+
         }
     }
 }
