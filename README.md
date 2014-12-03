@@ -1,4 +1,4 @@
-QA.SeleniumWebDriver.CSharp.SeedProject
-=======================================
+Selenium WebDriver - C#
+=======================
 
-Seed project written in C# for Software Quality Assurance using Selenium Web Driver.
+Seed project written in C#/Selenium Driver/ for Software Quality Assurance.
