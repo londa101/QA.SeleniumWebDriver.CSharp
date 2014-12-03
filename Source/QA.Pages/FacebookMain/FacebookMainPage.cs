@@ -1,9 +1,9 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
-using QA.Core;
-
-namespace QA.Pages.FacebookMain
+﻿namespace QA.Pages.FacebookMain
 {
+    using Core;
+    using OpenQA.Selenium;
+    using OpenQA.Selenium.Support.PageObjects;
+
     public class FacebookMainPage : BasePage
     {
         private const string PageUrl = @"https://www.facebook.com/";
@@ -21,9 +21,9 @@ namespace QA.Pages.FacebookMain
         public void LoginUser()
         {
             this.Elements.InputTextLoginEmail.SendKeys("Jane");
-            this.Elements.InputPasswordLoginPasword.SendKeys("Doe");
+            this.Elements.InputPasswordLoginPassword.SendKeys("Doe");
 
-            this.Elements.InputSubmitLoginPasword.Click();
+            this.Elements.InputSubmitLoginPassword.Click();
         }
     }
 }

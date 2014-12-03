@@ -1,8 +1,8 @@
-using System;
-using System.Text;
-
 namespace QA.Core.Exceptions
 {
+    using System;
+    using System.Text;
+
     public class TextNotFoundException : ApplicationException
     {
         public TextNotFoundException()
@@ -27,10 +27,10 @@ namespace QA.Core.Exceptions
         {
             var stringBuilder = new StringBuilder();
 
-            string customLoggingMessage = String.Format("#### The text:  {0} ####\n ####WAS NOT FOUND!####", textToFind);
+            string customLoggingMessage = string.Format("#### The text:  {0} ####\n ####WAS NOT FOUND!####", textToFind);
             stringBuilder.AppendLine(customLoggingMessage);
 
-            string cuurentUrlMessage = String.Format("The URL when the test failed was: {0}", ext.Browser.Url);
+            string cuurentUrlMessage = string.Format("The URL when the test failed was: {0}", ext.Browser.Url);
             stringBuilder.AppendLine(cuurentUrlMessage);
 
             return stringBuilder.ToString();

@@ -1,26 +1,42 @@
-﻿using OpenQA.Selenium;
-using QA.Core.Contracts;
-using System;
-
-namespace QA.Core
+﻿namespace QA.Core
 {
+    using System;
+
+    using Contracts;
+    using OpenQA.Selenium;
+
+    /// <summary>
+    /// The base page.
+    /// </summary>
     public abstract class BasePage : IPage
     {
         private const string ThePageUrlCannotBeEmpty = "The URL of the page cannot be empty.";
         private const string TheTitleCannotBeEmpty = "The title of the page cannot be empty.";
         private const string BaseUrl = "http://www.facebook.com";
 
-        protected readonly IWebDriver Driver;
+        private IWebDriver driver;
         private string url;
         private string title;
 
         protected BasePage(IWebDriver driver, string url, string title)
         {
-            this.Driver = driver;
+            this.driver = driver;
             this.Url = url;
             this.Title = title;
         }
 
+        public IWebDriver Driver
+        {
+            get { return this.driver; }
+            set { this.driver = value; }
+        }
+        
+        /// <summary>
+        /// Gets the url.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">
+        /// Throws an ArgumentNullException if the value is empty or null.
+        /// </exception>
         public string Url
         {
             get
@@ -32,7 +48,6 @@ namespace QA.Core
             {
                 if (string.IsNullOrEmpty(value))
                 {
-
                     throw new ArgumentNullException(ThePageUrlCannotBeEmpty);
                 }
 
@@ -40,6 +55,12 @@ namespace QA.Core
             }
         }
 
+        /// <summary>
+        /// Gets the title of the page.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">
+        /// Throws an ArgumentNullException if the value for the title is empty or null.
+        /// </exception>
         public string Title
         {
             get
@@ -58,9 +79,12 @@ namespace QA.Core
             }
         }
 
+        /// <summary>
+        /// Navigates to the page.
+        /// </summary>
         public void NavigateTo()
         {
-            this.Driver.Navigate().GoToUrl(this.Url);
+            this.driver.Navigate().GoToUrl(this.Url);
         }
     }
 }

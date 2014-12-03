@@ -1,9 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using QA.Core;
-using QA.Pages.FacebookMain;
-
-namespace QA.Tests
+﻿namespace QA.Tests
 {
+    using Core;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Pages.FacebookMain;
+
     [TestClass]
     public class Tests : BaseWebDriverTest
     {
@@ -26,18 +26,18 @@ namespace QA.Tests
         [Priority(5)]
         public void VerifyTitle()
         {
-            page.NavigateTo();
-       
-            Assert.AreEqual(page.Title, this.Browser.Title);
+            this.page.NavigateTo();
+
+            Assert.AreEqual(this.page.Title, this.Browser.Title);
         }
 
         [TestMethod]
         [Priority(5)]
-        public  void VerifyUrl()
+        public void VerifyUrl()
         {
             this.page.NavigateTo();
 
-            Assert.AreEqual(page.Url, this.Browser.Url);
+            Assert.AreEqual(this.page.Url, this.Browser.Url);
         }
 
         [TestMethod]

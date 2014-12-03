@@ -1,15 +1,15 @@
-﻿using OpenQA.Selenium;
-using QA.Core.Contracts;
-
-namespace QA.Core
+﻿namespace QA.Core
 {
+    using Contracts;
+    using OpenQA.Selenium;
+
     public class WebDriverService : IWebDriverService
     {
-        private readonly IWebDriverFactory _webDriverFactory;
+        private readonly IWebDriverFactory webDriverFactory;
 
         public WebDriverService(IWebDriverFactory webDriverFactory)
         {
-            this._webDriverFactory = webDriverFactory;
+            this.webDriverFactory = webDriverFactory;
         }
 
         public IWebDriver GetBrowser(BrowserType browserType)
@@ -19,15 +19,15 @@ namespace QA.Core
             switch (browserType)
             {
                 case BrowserType.Chrome:
-                    driver = this._webDriverFactory.GetChrome();
+                    driver = this.webDriverFactory.GetChrome();
                     break;
 
                 case BrowserType.Firefox:
-                    driver = this._webDriverFactory.GetFirefox();
+                    driver = this.webDriverFactory.GetFirefox();
                     break;
 
                 case BrowserType.InternetExporer:
-                    driver = this._webDriverFactory.GetInternetExplorer();
+                    driver = this.webDriverFactory.GetInternetExplorer();
                     break;
             }
 

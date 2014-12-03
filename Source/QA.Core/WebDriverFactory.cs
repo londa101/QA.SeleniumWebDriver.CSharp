@@ -1,13 +1,14 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Safari;
-using QA.Core.Contracts;
-using System;
-
-namespace QA.Core
+﻿namespace QA.Core
 {
+    using System;
+
+    using Contracts;
+    using OpenQA.Selenium;
+    using OpenQA.Selenium.Chrome;
+    using OpenQA.Selenium.Firefox;
+    using OpenQA.Selenium.IE;
+    using OpenQA.Selenium.Safari;
+
     public class WebDriverFactory : IWebDriverFactory
     {
         private readonly string pathToDrivers = Environment.CurrentDirectory;
@@ -19,7 +20,7 @@ namespace QA.Core
 
         public IWebDriver GetChrome()
         {
-            return new ChromeDriver(pathToDrivers);
+            return new ChromeDriver(this.pathToDrivers);
         }
 
         public IWebDriver GetInternetExplorer()
@@ -27,7 +28,7 @@ namespace QA.Core
             return new InternetExplorerDriver();
         }
 
-        public IWebDriver GetSafary()
+        public IWebDriver GetSafari()
         {
             return new SafariDriver();
         }

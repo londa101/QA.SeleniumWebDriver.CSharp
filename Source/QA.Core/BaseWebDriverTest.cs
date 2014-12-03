@@ -1,26 +1,34 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using QA.Core.Contracts;
-using QA.Core.Exceptions;
-using System;
-using System.Text;
-using System.Threading;
-using NoSuchElementException = QA.Core.Exceptions.NoSuchElementException;
-
-namespace QA.Core
+﻿namespace QA.Core
 {
+    using System;
+    using System.Text;
+    using System.Threading;
+
+    using Contracts;
+    using Exceptions;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using OpenQA.Selenium;
+    using OpenQA.Selenium.Support.UI;
+    using NoSuchElementException = Exceptions.NoSuchElementException;
+
+    /// <summary>
+    /// The base web driver test.
+    /// </summary>
     public class BaseWebDriverTest
     {
+        /// <summary>
+        /// The web driver service.
+        /// </summary>
         private readonly IWebDriverService webDriverService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BaseWebDriverTest"/> class.
+        /// </summary>
         public BaseWebDriverTest()
         {
             IWebDriverFactory webDriverFactory = new WebDriverFactory();
             this.webDriverService = new WebDriverService(webDriverFactory);
         }
-
-        protected log4net.ILog Log { get; set; }
 
         public IWebDriver Browser { get; set; }
 
@@ -34,9 +42,11 @@ namespace QA.Core
 
         public int TimeOut { get; set; }
 
-        public void OpenBrowser(BrowserType browserType, int timeOut)
+        protected log4net.ILog Log { get; set; }
+
+        protected void OpenBrowser(BrowserType browserType, int timeOut)
         {
-            this.Browser = webDriverService.GetBrowser(browserType);
+            this.Browser = this.webDriverService.GetBrowser(browserType);
             this.Wait = new WebDriverWait(this.Browser, TimeSpan.FromSeconds(timeOut));
             this.TimeOut = timeOut;
             this.Log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
@@ -54,7 +64,7 @@ namespace QA.Core
             }
         }
 
-        public IWebElement GetElement(By by)
+        protected IWebElement GetElement(By by)
         {
             IWebElement result = null;
             try
@@ -63,14 +73,14 @@ namespace QA.Core
             }
             catch (TimeoutException ex)
             {
-                Log.Error(ex.Message);
+                this.Log.Error(ex.Message);
                 throw new NoSuchElementException(by, this, ex);
             }
 
             return result;
         }
 
-        public bool IsElementPresent(By by)
+        protected bool IsElementPresent(By by)
         {
             try
             {
@@ -79,17 +89,17 @@ namespace QA.Core
             }
             catch (NoSuchElementException ex)
             {
-                Log.Error(ex.Message);
+                this.Log.Error(ex.Message);
                 return false;
             }
         }
 
-        public void WaitForElementPresent(By by)
+        protected void WaitForElementPresent(By by)
         {
             this.GetElement(by);
         }
 
-        public void WaitForElementNotPresent(By by)
+        protected void WaitForElementNotPresent(By by)
         {
             try
             {
@@ -98,44 +108,45 @@ namespace QA.Core
             }
             catch (NoSuchElementException ex)
             {
-                Log.Error(ex.Message);
+                this.Log.Error(ex.Message);
                 return;
             }
         }
 
-        public void WaitForChecked(By by)
+        protected void WaitForChecked(By by)
         {
             IWebElement currentElement = this.GetElement(by);
             bool isSelected = currentElement.Selected;
 
             if (!isSelected)
             {
-                Log.ErrorFormat("The element with find expression {0} was not checked.", by.ToString());
+                this.Log.ErrorFormat("The element with find expression {0} was not checked.", by.ToString());
                 throw new NotCheckedException(by, this);
             }
         }
 
-        public void WaitForNotChecked(By by)
+        protected void WaitForNotChecked(By by)
         {
             IWebElement currentElement = this.GetElement(by);
             bool isSelected = currentElement.Selected;
 
             if (!isSelected)
             {
-                Log.ErrorFormat("The element with find expression {0} was checked.", by.ToString());
+                this.Log.ErrorFormat("The element with find expression {0} was checked.", by.ToString());
                 throw new StillCheckedException(by, this);
             }
         }
 
-        public void WaitForTextPresent(string textToFind, bool shouldWait = true)
+        protected void WaitForTextPresent(string textToFind, bool shouldWait = true)
         {
-            for (int second = 0; ; second++)
+            for (int second = 0; second < this.TimeOut; second++)
             {
                 if (second >= this.TimeOut)
                 {
-                    Log.ErrorFormat("The following text: {0}\n was not found on the page.", textToFind);
+                    this.Log.ErrorFormat("The following text: {0}\n was not found on the page.", textToFind);
                     throw new TextNotFoundException(textToFind, this);
                 }
+
                 try
                 {
                     string bodyInnerHtml = this.Browser.FindElement(By.TagName("body")).Text;
@@ -146,25 +157,26 @@ namespace QA.Core
                 }
                 catch (Exception ex)
                 {
-                    Log.Error(ex.Message);
+                    this.Log.Error(ex.Message);
                 }
+
                 Thread.Sleep(1000);
             }
         }
 
-        public void WaitForText(By by, string textToFind)
+        protected void WaitForText(By by, string textToFind)
         {
             IWebElement currentElement = this.GetElement(by);
             string elementText = currentElement.Text;
 
             if (!textToFind.Equals(elementText))
             {
-                Log.ErrorFormat("The following text: {0}\n was not found on the page.", textToFind);
+                this.Log.ErrorFormat("The following text: {0}\n was not found on the page.", textToFind);
                 throw new TextNotFoundException(textToFind, this);
             }
         }
 
-        public void WaitForTextNotPresent(string textToFind)
+        protected void WaitForTextNotPresent(string textToFind)
         {
             this.WaitForTextPresent(textToFind, false);
         }
